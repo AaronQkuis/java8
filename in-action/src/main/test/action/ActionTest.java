@@ -1,3 +1,5 @@
+package action;
+
 import org.junit.Test;
 
 /**
@@ -9,4 +11,7 @@ public class ActionTest {
     public void helloWorld() {
         System.out.printf("hello world");
     }
+
+
+
 }
