@@ -170,7 +170,7 @@ class SingleLinkedList {
     }
 
     /**
-     * 获取倒数某个链表
+     * 获取倒数某个元素
      *
      * @param index
      * @return
@@ -191,6 +191,7 @@ class SingleLinkedList {
     }
     /**
      * 遍历链表
+     *
      */
     public void list() {
         if (head.next == null) {
