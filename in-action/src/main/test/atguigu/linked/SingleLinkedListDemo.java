@@ -32,6 +32,28 @@ public class SingleLinkedListDemo {
         singleLinkedList.delete(2);
         singleLinkedList.list();
         System.out.println("有效个数： " + singleLinkedList.getLength());
+        System.out.println("翻转列表");
+        reverseLinked(singleLinkedList.getHead());
+        singleLinkedList.list();
+    }
+
+    public static void reverseLinked(HeroNode oldHead) {
+        if (oldHead.next == null || oldHead.next.next == null) {
+            return;
+        }
+        HeroNode temp = oldHead.next;
+        HeroNode oldNext = null;
+        HeroNode newHead = new HeroNode(0, "", "");
+        while (true) {
+            if (temp == null) {
+                break;
+            }
+            oldNext = temp.next;
+            oldNext.next = newHead.next;
+            newHead.next = oldNext;
+            temp = oldNext;
+        }
+        oldHead.next = newHead.next;
     }
 }
 
@@ -45,6 +67,10 @@ public class SingleLinkedListDemo {
 class SingleLinkedList {
     // 头节点
     private HeroNode head = new HeroNode(0, "", "");
+
+    public HeroNode getHead() {
+        return head;
+    }
 
     /**
      * 添加节点至末尾
