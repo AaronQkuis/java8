@@ -49,8 +49,8 @@ public class SingleLinkedListDemo {
                 break;
             }
             oldNext = temp.next;
-            oldNext.next = newHead.next;
-            newHead.next = oldNext;
+            temp.next = newHead.next;
+            newHead.next = temp;
             temp = oldNext;
         }
         oldHead.next = newHead.next;
