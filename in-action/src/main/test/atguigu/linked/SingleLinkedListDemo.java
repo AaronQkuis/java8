@@ -1,5 +1,7 @@
 package atguigu.linked;
 
+import java.util.Stack;
+
 /**
  * @author qikun
  * @date 2/16/2024  8:15 AM
@@ -35,8 +37,32 @@ public class SingleLinkedListDemo {
         System.out.println("翻转列表");
         reverseLinked(singleLinkedList.getHead());
         singleLinkedList.list();
+        System.out.println("反向遍历链表");
+        reversePrint(singleLinkedList.getHead());
     }
-
+    /**
+     * 反向遍历链表
+     *
+     */
+    public static void reversePrint(HeroNode head) {
+        if(head.next == null) {
+            return;
+        }
+        HeroNode temp = head.next;
+        Stack<HeroNode> stack = new Stack<>();
+        while (temp != null) {
+            stack.push(temp);
+            temp = temp.next;
+        }
+        while (stack.size() > 0) {
+            System.out.println(stack.pop());
+        }
+    }
+    /**
+     * 反转链表
+     *
+     * @param oldHead
+     */
     public static void reverseLinked(HeroNode oldHead) {
         if (oldHead.next == null || oldHead.next.next == null) {
             return;
