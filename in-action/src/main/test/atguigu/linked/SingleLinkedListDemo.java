@@ -11,34 +11,49 @@ public class SingleLinkedListDemo {
         HeroNode heroNode1 = new HeroNode(1, "宋江", "及时雨");
         HeroNode heroNode2 = new HeroNode(2, "卢俊义", "玉麒麟");
         HeroNode heroNode3 = new HeroNode(3, "吴用", "智多星");
-        HeroNode heroNode5 = new HeroNode(4, "武松", "打虎");
+        HeroNode heroNode4 = new HeroNode(4, "武松", "打虎");
+        HeroNode heroNode5 = new HeroNode(5, "赵云", "子龙");
+        HeroNode heroNode6 = new HeroNode(6, "关羽", "关二爷");
+        HeroNode heroNode7 = new HeroNode(7, "张飞", "吃豆芽");
 
         SingleLinkedList singleLinkedList = new SingleLinkedList();
 //        singleLinkedList.addTail(heroNode1);
 //        singleLinkedList.addTail(heroNode2);
 //        singleLinkedList.addTail(heroNode3);
         singleLinkedList.addByOrder(heroNode1);
-        singleLinkedList.addByOrder(heroNode3);
-        singleLinkedList.addByOrder(heroNode2);
-        singleLinkedList.addByOrder(heroNode5);
-        singleLinkedList.list();
-        System.out.println("有效个数： " + singleLinkedList.getLength());
-        HeroNode lastIndex = singleLinkedList.findLastIndex(1);
-        System.out.println("倒数第1个： " + lastIndex.toString());
-        //修改
-        HeroNode heroNode4 = new HeroNode(1, "送姜", "下雨了");
-        singleLinkedList.updateById(heroNode4);
+        singleLinkedList.addByOrder(heroNode4);
+        singleLinkedList.addByOrder(heroNode6);
+        singleLinkedList.addByOrder(heroNode7);
         singleLinkedList.list();
 
+        SingleLinkedList singleLinkedList1 = new SingleLinkedList();
+        singleLinkedList1.addByOrder(heroNode2);
+        singleLinkedList1.addByOrder(heroNode3);
+        singleLinkedList1.addByOrder(heroNode5);
+        singleLinkedList1.list();
+
+        System.out.println("合并后的");
+
+        SingleLinkedList singleLinkedList2 = singleLinkedList.merge(singleLinkedList, singleLinkedList1);
+        singleLinkedList2.list();
+        //System.out.println(heroNode1);
+        /*System.out.println("有效个数： " + singleLinkedList.getLength());
+        HeroNode lastIndex = singleLinkedList.findLastIndex(1);
+        System.out.println("倒数第1个： " + lastIndex.toString());*/
+        //修改
+        /*HeroNode heroNode4 = new HeroNode(1, "送姜", "下雨了");
+        singleLinkedList.updateById(heroNode4);
+        singleLinkedList.list();*/
+
         //删除
-        singleLinkedList.delete(2);
+        /*singleLinkedList.delete(2);
         singleLinkedList.list();
         System.out.println("有效个数： " + singleLinkedList.getLength());
         System.out.println("翻转列表");
         reverseLinked(singleLinkedList.getHead());
         singleLinkedList.list();
         System.out.println("反向遍历链表");
-        reversePrint(singleLinkedList.getHead());
+        reversePrint(singleLinkedList.getHead());*/
     }
     /**
      * 反向遍历链表
@@ -96,6 +111,41 @@ class SingleLinkedList {
 
     public HeroNode getHead() {
         return head;
+    }
+    public SingleLinkedList () {
+    }
+    public SingleLinkedList (HeroNode head) {
+        this.head = head;
+    }
+    public SingleLinkedList merge(SingleLinkedList list1, SingleLinkedList list2) {
+        if (list1.head.next == null) {
+            return list2;
+        }
+        if (list2.head.next == null) {
+            return list1;
+        }
+        HeroNode head = new HeroNode(0,"", "");
+        HeroNode temp = head;
+        HeroNode l1 = list1.head.next;
+        HeroNode l2 = list2.head.next;
+        while (l1 != null && l2 != null) {
+            if (l1.id < l2.id) {
+                temp.next = l1;
+                l1 = l1.next;
+                temp = temp.next;
+            } else {
+                temp.next = l2;
+                l2 = l2.next;
+                temp = temp.next;
+            }
+        }
+        if (l1 == null) {
+            temp.next = l2;
+        }
+        if (l2 == null) {
+            temp.next = l1;
+        }
+        return new SingleLinkedList(head);
     }
 
     /**
