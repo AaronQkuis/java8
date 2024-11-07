@@ -1,4 +1,4 @@
-package atguigu.linked;
+package com.atguigu.linked;
 
 import java.util.Stack;
 

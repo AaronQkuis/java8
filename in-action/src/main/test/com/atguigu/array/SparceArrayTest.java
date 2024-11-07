@@ -1,4 +1,4 @@
-package atguigu.array;
+package com.atguigu.array;
 
 /**
  * @author qikun

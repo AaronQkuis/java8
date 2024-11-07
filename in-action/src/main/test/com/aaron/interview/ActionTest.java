@@ -1,4 +1,4 @@
-package action;
+package com.aaron.interview;
 
 import org.junit.Test;
 
@@ -12,6 +12,12 @@ public class ActionTest {
         System.out.printf("hello world");
     }
 
+
+    @Test
+    public void arrayNullTest() {
+        int[] intArray = new int[3];
+        System.out.println(intArray[0]);
+    }
 
 
 }
