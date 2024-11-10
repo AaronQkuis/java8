@@ -11,6 +11,11 @@ class Parent<T> {
     public void print(T value) {
         System.out.println("Parent: " + value);
     }
+    class Solution {
+        public  int test () {
+            return 0;
+        }
+    }
 }
 class Child extends Parent<Integer> {
     @Override
@@ -39,6 +44,13 @@ class BullDog extends Dog {
 
 public class Main {
     public static void main(String[] args) {
+        List<? extends Dog> extendsList = new ArrayList<>();
+        //extendsList.add(new BullDog()); 不能添加
+        List<? super Dog> superList = new ArrayList<>();
+        superList.add(new Dog());
+        superList.add(new BullDog());
+        // superList.add(new Animal());
+        // Animal animal = (Animal) superList.get(0);
         List<String> strings = new ArrayList<>();
         strings.add("a");
         Parent<BullDog> bullDogParent = new Parent<>();
